@@ -1,9 +1,17 @@
+#spring:
+#  datasource:
+#    url: jdbc:h2:tcp://localhost/~/gooroom
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/gooroom
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/gooroom?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: '1234'
+
+
 
   jpa:
     hibernate:
@@ -12,6 +20,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    show-sql: true
 
   thymeleaf:
     prefix: classpath:/templates/
