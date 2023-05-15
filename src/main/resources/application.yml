@@ -7,9 +7,9 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/gooroom?characterEncoding=UTF-8&serverTimezone=UTC
-    username: root
+    username: hwan
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: '1234'
+    password: 'leo!990706'
 
 
 
