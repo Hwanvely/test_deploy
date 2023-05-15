@@ -1,5 +1,6 @@
 package GooRoom.projectgooroom.global.config;
 
+import GooRoom.projectgooroom.global.filter.CorsFilter;
 import GooRoom.projectgooroom.global.jwt.JwtAuthenticationProcessingFilter;
 import GooRoom.projectgooroom.global.jwt.JwtService;
 import GooRoom.projectgooroom.global.jwt.handler.JwtAccessDenialHandler;
@@ -43,12 +44,17 @@ public class SecurityConfig {
     private final JwtAccessDenialHandler jwtAccessDenialHandler;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
+    private final CorsFilter corsFilter;
+
+    private final org.springframework.web.filter.CorsFilter corsFilter2;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .formLogin().disable() // FormLogin 사용 X
                 .httpBasic().disable() // httpBasic 사용 X
-                .csrf().disable() // csrf 보안 사용 X
+                .csrf().disable()// csrf 보안 사용 X
+                .addFilter(corsFilter)
                 .headers().frameOptions().disable()
                 .and()
 
