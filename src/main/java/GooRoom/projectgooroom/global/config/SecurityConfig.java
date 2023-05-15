@@ -46,7 +46,7 @@ public class SecurityConfig {
 
     private final CorsFilter corsFilter;
 
-    private final org.springframework.web.filter.CorsFilter corsFilter2;
+//    private final org.springframework.web.filter.CorsFilter corsFilter2;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
