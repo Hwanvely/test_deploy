@@ -53,3 +53,6 @@ logging:
     org.hibernate.SQL : debug
     org.hibernate.type: trace
     # org.apache.coyote.http11 : debug # http 로그 정보
+server:
+  address: 0.0.0.0
+  port: 8080
