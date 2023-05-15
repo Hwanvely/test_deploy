@@ -29,6 +29,7 @@ spring:
       hibernate:
         format_sql: true
     show-sql: true
+    database-platform: org.hibernate.dialect.MariaDB105Dialect
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
@@ -38,6 +39,7 @@ spring:
     include: oauth
     main:
       allow-bean-definition-overriding: true
+
 
 jwt:
   secretKey: U2ltcGxlQm9hcmQtSnVuc2VvLVNwcmluZ0Jvb3QtVXNpbmdTcHJpbmdTZWN1cml0eS0yMDIzLTA0LTA5LXN1bmRheS13aXRoLU1hY2tib29rQWlyLUFpcnBvZHNwcm8taXBob25lMTRwcm8taXBhZGFyaXI0Cg==
