@@ -4,20 +4,20 @@
 #    username: sa
 #    password:
 #    driver-class-name: org.h2.Driver
-#spring:
-#  datasource:
-#    url: jdbc:mysql://localhost:3307/gooroom?characterEncoding=UTF-8&serverTimezone=UTC
-##    username: hwan
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    password: 'leo!990706'
-#    username: root
-
 spring:
   datasource:
-    username: root
+    url: jdbc:mysql://localhost:3306/gooroom?characterEncoding=UTF-8&serverTimezone=UTC
+    username: hwan
+    driver-class-name: com.mysql.cj.jdbc.Driver
     password: 'leo!990706'
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://mariadb:3306/mariadb
+#    username: root
+
+#spring:
+#  datasource:
+#    username: root
+#    password: 'leo!990706'
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://mariadb:3306/mariadb
 
 
 
