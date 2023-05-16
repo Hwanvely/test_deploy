@@ -20,7 +20,6 @@ public class CorsFilter implements Filter {
         System.out.println("필터링이 진행중입니다....");
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "https://web-gooroom-frontend-7hqac2alhilcn2c.sel4.cloudtype.app");
-        response.setHeader("Access-Control-Allow-Credentails", "true");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Max-Age", "3600");

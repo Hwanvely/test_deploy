@@ -1,6 +1,5 @@
 package GooRoom.projectgooroom.global.config;
 
-import GooRoom.projectgooroom.global.filter.CorsFilter;
 import GooRoom.projectgooroom.global.jwt.JwtAuthenticationProcessingFilter;
 import GooRoom.projectgooroom.global.jwt.JwtService;
 import GooRoom.projectgooroom.global.jwt.handler.JwtAccessDenialHandler;
@@ -27,6 +26,10 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -44,9 +47,8 @@ public class SecurityConfig {
     private final JwtAccessDenialHandler jwtAccessDenialHandler;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    private final CorsFilter corsFilter;
 
-//    private final org.springframework.web.filter.CorsFilter corsFilter2;
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -54,7 +56,9 @@ public class SecurityConfig {
                 .formLogin().disable() // FormLogin 사용 X
                 .httpBasic().disable() // httpBasic 사용 X
                 .csrf().disable()// csrf 보안 사용 X
-                .addFilter(corsFilter)
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
+
                 .headers().frameOptions().disable()
                 .and()
 
@@ -88,7 +92,7 @@ public class SecurityConfig {
         // 순서 : LogoutFilter -> JwtAuthenticationProcessingFilter -> CustomJsonUsernamePasswordAuthenticationFilter
         http.addFilterAfter(customJsonUsernamePasswordAuthenticationFilter(), LogoutFilter.class);
         http.addFilterBefore(jwtAuthenticationProcessingFilter(), CustomJsonUsernamePasswordAuthenticationFilter.class);
-        http.addFilterBefore(corsFilter, LogoutFilter.class);
+
 
         return http.build();
     }
@@ -144,5 +148,18 @@ public class SecurityConfig {
     public JwtAuthenticationProcessingFilter jwtAuthenticationProcessingFilter() {
         JwtAuthenticationProcessingFilter jwtAuthenticationFilter = new JwtAuthenticationProcessingFilter(jwtService, memberRepository);
         return jwtAuthenticationFilter;
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOriginPattern("*");
+        corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.addAllowedMethod("*");
+        corsConfiguration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return source;
     }
 }
